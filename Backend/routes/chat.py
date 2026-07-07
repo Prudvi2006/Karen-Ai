@@ -5,7 +5,7 @@ from llms.groqvision import stream_image_response
 
 import google.genai.types as types
 from llms.llm import stream_response1
-from rag.vectordb import vector_store
+
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from bson import ObjectId

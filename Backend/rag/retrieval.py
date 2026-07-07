@@ -1,5 +1,7 @@
 # pyrefly: ignore [missing-import]
-from rag.vectordb import vector_store
+from rag.vectordb import get_vector_store
+
+vector_store = get_vector_store()
 
 
 def retrieve_context(query: str , chat_id: str):
