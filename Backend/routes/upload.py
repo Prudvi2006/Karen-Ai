@@ -5,7 +5,7 @@ from fastapi import APIRouter, UploadFile, File, Depends
 # pyrefly: ignore [missing-import]
 from auth.dependencies import get_current_user
 # pyrefly: ignore [missing-import]
-from rag.vectordb import vector_store
+from rag.vectordb import get_vector_store
 # pyrefly: ignore [missing-import]
 from rag.loader import extract_text_from_pdf
 # pyrefly: ignore [missing-import]
@@ -17,7 +17,7 @@ from bson import ObjectId
 # pyrefly: ignore [missing-import]
 import cloudinary
 import cloudinary.uploader
-import cloudinary_config
+# import cloudinary_config
 CURRENT_IMAGE = None
 
 router = APIRouter()
@@ -70,7 +70,7 @@ async def upload_pdf(
 
     chunks = split_text(text)
 
-    vector_store.add_texts(
+    get_vector_store.add_texts(
         texts=chunks,
         metadatas=[
             {
