@@ -23,7 +23,9 @@ app.add_middleware(
 )
 
 
-
+@app.on_event("startup")
+async def startup_event():
+    print("🚀 FastAPI server started")
 
 app.include_router(upload_router)
 app.include_router(chat_router)
