@@ -73,25 +73,25 @@ body,
 /* ================= Chat ================= */
 
 .chatArea {
-    flex: 1;
-    overflow-y: auto;
-    background: white;
+  flex: 1;
+  overflow-y: auto;
+  background: white;
 }
 
 .chatContainer {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ================= Messages ================= */
 
 .messages {
-  
- 
+
+
   padding: 30px 20px 120px;
 }
 
@@ -141,7 +141,7 @@ body,
   margin: 0;
 }
 
-.bubble p + p {
+.bubble p+p {
   margin-top: 10px;
 }
 
@@ -183,22 +183,38 @@ body,
 
 /* ================= Input ================= */
 
+
+/* Input Bar */
+
 .inputBar {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 15px;
 
   margin: 20px;
-  padding: 12px 16px;
+  padding: 16px;
 
-  background: white;
+  background: #fff;
   border: 1px solid #ddd;
-  border-radius: 18px;
+  border-radius: 25px;
 
   box-shadow: 0 5px 20px rgba(0,0,0,.08);
 }
 
-.inputBar input {
+/* Bottom Row */
+
+
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Text Input */
+
+.inputRow input[type="text"],
+.inputRow input:not([type]) {
   flex: 1;
   border: none;
   outline: none;
@@ -206,7 +222,9 @@ body,
   background: transparent;
 }
 
-.inputBar button {
+/* Buttons */
+
+.inputRow button {
   width: 42px;
   height: 42px;
   border: none;
@@ -217,8 +235,48 @@ body,
   font-size: 18px;
 }
 
-.inputBar button:hover {
+.inputRow button:hover {
   background: #0e8f70;
+}
+
+/* Attachment Area */
+
+.filePreview {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+/* Image Preview */
+
+.previewCard {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.previewCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.removePreview {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+
+  width: 24px;
+  height: 24px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #222;
+  color: #fff;
+
+  cursor: pointer;
 }
 
 /* Scrollbar */
@@ -236,52 +294,53 @@ body,
   background: #b5b5b5;
 }
 
-.uploadBtn{
-  width:45px;
-  height:45px;
-  border:none;
-  border-radius:50%;
-  cursor:pointer;
-  font-size:18px;
+.uploadBtn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-.uploadStatus{
-  margin-top:8px;
-  font-size:14px;
-  color:#666;
+.uploadStatus {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
 }
+
 .modelSelector {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .modelSelector label {
-    font-size: 14px;
-    color: #888;
-    font-weight: 600;
+  font-size: 14px;
+  color: #888;
+  font-weight: 600;
 }
 
 .modelSelector select {
-    background: #2f2f2f;
-    color: white;
-    border: 1px solid #555;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-size: 14px;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.2s ease;
+  background: #2f2f2f;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
 }
 
 .modelSelector select:hover {
-    border-color: #10a37f;
+  border-color: #10a37f;
 }
 
 .modelSelector select:focus {
-    border-color: #10a37f;
-    box-shadow: 0 0 6px rgba(16, 163, 127, 0.4);
+  border-color: #10a37f;
+  box-shadow: 0 0 6px rgba(16, 163, 127, 0.4);
 }
 
 .history-item {
