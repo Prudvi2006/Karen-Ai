@@ -30,6 +30,10 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     print("🚀 FastAPI server started")
+    
+@app.get("/")
+def root():
+    return {"message": "Karen AI API is running!"}
 
 app.include_router(upload_router)
 app.include_router(chat_router)

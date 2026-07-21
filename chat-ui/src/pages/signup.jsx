@@ -11,7 +11,7 @@ export default function Signup() {
     password: "",
     
   });
-
+const API_URL = "https://karen-ai-multimodal-rag-chatbot.onrender.com";
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -26,7 +26,7 @@ export default function Signup() {
     alert("Passwords do not match");
     return;
     }
-    const response= await fetch("http://localhost:8000/signup", {
+    const response= await fetch(`${API_URL}/signup`, {
      method: "POST",
      headers: {
      "Content-Type": "application/json",

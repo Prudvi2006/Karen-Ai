@@ -9,6 +9,7 @@ export default function homepage() {
   const [messages, setMessages] = useState([
     { role: "bot", text: "Hello 👋 How can I help you today?" },
   ]);
+const API_URL = "https://karen-ai-multimodal-rag-chatbot.onrender.com";
 
   const [input, setInput] = useState("");
   const [chatId, setChatId] = useState("");
@@ -36,7 +37,7 @@ export default function homepage() {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:8000/chat/stream", {
+      const res = await fetch(`${API_URL}/chat/stream`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,9 +102,9 @@ export default function homepage() {
     let endpoint = "";
 
     if (file.type === "application/pdf") {
-      endpoint = "http://localhost:8000/upload";
+      endpoint = `${API_URL}/upload`;
     } else if (file.type.startsWith("image/")) {
-      endpoint = "http://localhost:8000/upload-image";
+      endpoint =  `${API_URL}/upload-image`;
     } else {
       setUploadStatus("❌ Unsupported file type");
       return;
@@ -138,7 +139,7 @@ console.log("Chat ID:", chatId);
 
   const createNewChat = async () => {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:8000/new-chat", {
+    const res = await fetch(`${API_URL}/new-chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -160,7 +161,7 @@ console.log("Chat ID:", chatId);
     const token = localStorage.getItem("token");
     console.log(token);
     const res = await fetch(
-      `http://localhost:8000/messages/${id}`,
+      `${API_URL}/messages/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -176,7 +177,7 @@ console.log("Chat ID:", chatId);
   const loadChats = async () => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:8000/chats", {
+    const res = await fetch(`${API_URL}/chats`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -201,7 +202,7 @@ console.log("Chat ID:", chatId);
 
   const deleteChat = async (id) => {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:8000/chat/${id}`, {
+    const res = await fetch(`${API_URL}/chat/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -231,7 +232,7 @@ console.log("Chat ID:", chatId);
     const initialize = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:8000/chats", {
+      const res = await fetch(`${API_URL}/chats`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
