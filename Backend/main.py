@@ -11,6 +11,7 @@ app = FastAPI()
 # Allow CORS for localhost and optional production frontend URL
 origins = [
     "http://localhost:5173",
+    "https://karen-ai-multimodal-rag-chatbot.vercel.app",
     
 ]
 frontend_url = os.getenv("FRONTEND_URL")

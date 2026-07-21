@@ -1,10 +1,12 @@
 cloudinary==1.45.0
+
 fastapi==0.116.1
 uvicorn==0.35.0
 
 PyMuPDF==1.26.4
 
 groq==0.31.0
+google-genai
 
 langchain==0.3.27
 langchain-core==0.3.75
@@ -17,13 +19,21 @@ langchain-text-splitters==0.3.11
 openai==1.108.0
 
 passlib[bcrypt]==1.7.4
-protobuf==6.32.0
+
 pydantic==2.11.7
 pymongo==4.14.1
+
 python-dotenv==1.1.1
 python-jose==3.5.0
+python-multipart==0.0.20
+
 requests==2.32.5
 
-sentence-transformers==5.1.0
+sentence-transformers==3.4.1
+torch==2.7.1
+
 chromadb==1.0.20
-python-multipart==0.0.20
+
+protobuf==5.29.5
+
+email-validator==2.2.0
