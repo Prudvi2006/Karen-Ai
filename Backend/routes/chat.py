@@ -253,7 +253,7 @@ Rules:
 
                 if req.model == "gemini":
                     print("gemini image<<<<")
-                    for chunk in get_response_stream(req.message, image_path=image_path):
+                    for chunk in get_response_stream(messages2, image_path=image_path):
 
                         full_response += chunk
                         yield chunk

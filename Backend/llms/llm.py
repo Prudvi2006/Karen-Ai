@@ -4,7 +4,7 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
-groq_api_key = os.getenv("GROQ_API_KEY2")
+groq_api_key = os.getenv("GROQ_API_KEY")
 
 llm = ChatGroq(
     api_key=groq_api_key,

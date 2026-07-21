@@ -28,19 +28,20 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
 @router.post("/upload")
+
 async def upload_pdf(
     chat_id: str,
     file: UploadFile = File(...),
     user_id: str = Depends(get_current_user)
-):
-
+        ):
+    print("=== upload endpoint entered ===")
     # Upload PDF to Cloudinary
     result = cloudinary.uploader.upload(
         file.file,
         resource_type="raw",
         folder="chat-pdfs"
     )
-
+    print("File uploaded into cloud at upload",result["secure_url"])
     pdf_url = result["secure_url"]
     public_id = result["public_id"]
 
@@ -67,10 +68,11 @@ async def upload_pdf(
 
     # Extract text for RAG
     text = extract_text_from_pdf(temp_path)
+    print(text)
 
     chunks = split_text(text)
 
-    get_vector_store.add_texts(
+    get_vector_store().add_texts(
         texts=chunks,
         metadatas=[
             {
@@ -105,6 +107,7 @@ async def upload_image(
         file.file,
         folder="chat-images"
     )
+    
 
     image_url = result["secure_url"]
     public_id = result["public_id"]

@@ -111,6 +111,8 @@ export default function homepage() {
 
     try {
       const token = localStorage.getItem("token");
+      console.log("Token:", token);
+console.log("Chat ID:", chatId);
 
       const res = await fetch(`${endpoint}?chat_id=${chatId}`, {
         method: "POST",

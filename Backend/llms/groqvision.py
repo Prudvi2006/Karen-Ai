@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY2"))
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
 def stream_image_response(prompt: str, image_path: str):

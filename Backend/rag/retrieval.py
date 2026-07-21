@@ -1,11 +1,11 @@
 # pyrefly: ignore [missing-import]
 from rag.vectordb import get_vector_store
 
-vector_store = get_vector_store()
+
 
 
 def retrieve_context(query: str , chat_id: str):
-    docs = vector_store.similarity_search(
+    docs = get_vector_store().similarity_search(
         query=query,
         k=3,
          filter={

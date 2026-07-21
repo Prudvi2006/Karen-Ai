@@ -254,6 +254,20 @@ body,
   width: 90px;
   height: 90px;
 }
+.pdfCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 18px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #f8f8f8;
+
+  width: fit-content;
+  min-width: 220px;
+}
 
 .previewCard img {
   width: 100%;
@@ -267,16 +281,28 @@ body,
   top: -8px;
   right: -8px;
 
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 
   border: none;
   border-radius: 50%;
 
-  background: #222;
-  color: #fff;
+  background: #444;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+
+  transition: 0.2s;
+}
+
+.removePreview:hover {
+  background: red;
 }
 
 /* Scrollbar */

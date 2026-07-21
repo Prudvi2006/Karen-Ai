@@ -17,16 +17,10 @@ def stream_openrouter_rag(question: str , chat_id: str):
     context = retrieve_context(question , chat_id)
 
     prompt = f"""
-Before giving any response say that this response is from uploaded document using OpenRouter.
+
 
 You are a helpful AI assistant.
-
-
-
 If the answer cannot be found in the context:
-
-Then generate answer on your own and say
-
 "I couldn't find that information in the uploaded documents.."
 
 Context:

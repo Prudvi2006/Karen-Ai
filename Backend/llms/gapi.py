@@ -4,10 +4,10 @@ import os
 
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY1"))
+client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def get_response_stream(messages, pdf_path=None, image_path=None):
-    contents = messages.copy()
+    contents = list(messages)
 
     if pdf_path:
         pdf_file = client.files.upload(file=pdf_path)
