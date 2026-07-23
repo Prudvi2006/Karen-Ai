@@ -16,7 +16,7 @@ from models import NewChat, ChatRequest
 
 from database import messages_collection, chats_collection
 from llms.gapi import get_response_stream
-import routes.upload as upload
+# import routes.upload as upload
 from routes.download import download_file
 
 # pyrefly: ignore [missing-import]
@@ -114,7 +114,7 @@ def chat_stream(req: ChatRequest, user_id: str = Depends(get_current_user)):
 
     pdf_url = chat.get("pdf_url")
     image_url = chat.get("image_url")
-    
+
     messages_collection.insert_one({
         "chat_id": req.chat_id,
         "user_id": user_id, 
