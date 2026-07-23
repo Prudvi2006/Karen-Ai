@@ -95,6 +95,26 @@ def chat_stream(req: ChatRequest, user_id: str = Depends(get_current_user)):
             }
         }
     )
+    
+
+    chat = chats_collection.find_one(
+    {
+        "_id": ObjectId(req.chat_id),
+        "user_id": user_id
+    }
+   )
+    if not chat:
+        raise HTTPException(status_code=404, detail="Chat not found")
+
+    if chat.get("pdf_url") and not chat.get("rag_ready"):
+        return StreamingResponse(
+        iter(["Please wait a few seconds while I finish processing your PDF..."]),
+        media_type="text/plain"
+    )
+
+    pdf_url = chat.get("pdf_url")
+    image_url = chat.get("image_url")
+    
     messages_collection.insert_one({
         "chat_id": req.chat_id,
         "user_id": user_id, 

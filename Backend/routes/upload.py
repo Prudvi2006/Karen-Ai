@@ -131,6 +131,7 @@
 #     }
 
 
+from Backend.routes import chat
 from langchain_core.outputs import chat_result
 from langchain_core.outputs import chat_result
 from fastapi import APIRouter, UploadFile, File, Depends, BackgroundTasks
@@ -179,8 +180,20 @@ def process_pdf_in_background(temp_path: str, chat_id: str, user_id: str, filena
                 for _ in chunks
             ]
         )
-
         print("Saved to Chroma")
+
+        # ✅ Mark the PDF as ready for RAG
+        chats_collection.update_one(
+            {"_id": ObjectId(chat_id)},
+            {
+                "$set": {
+                    "rag_ready": True
+                }
+            }
+        )
+
+
+        print("RAG indexing completed")
     except Exception as e:
         print(f"Error processing PDF in background: {e}")
     finally:
@@ -218,16 +231,21 @@ def upload_pdf(
         shutil.copyfileobj(file.file, buffer)
 
     # Save Cloudinary information in MongoDB
-    chats_collection.update_one(
+    result_db=chats_collection.update_one(
         {"_id": ObjectId(chat_id)},
         {
             "$set": {
                 "pdf_url": pdf_url,
-                "pdf_public_id": public_id
+                "pdf_public_id": public_id,
+                "rag_ready": False
             }
         }
     )
+    print("Matched:", result_db.matched_count)
+    print("Modified:", result_db.modified_count)
 
+    chat = chats_collection.find_one({"_id": ObjectId(chat_id)})
+    print(chat)
     # Offload PDF extraction and vector embedding to background tasks
     background_tasks.add_task(
         process_pdf_in_background,
