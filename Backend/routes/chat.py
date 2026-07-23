@@ -212,8 +212,11 @@ Rules:
 
     def generate():
         full_response = ""
-        print(pdf_path)
-        print(image_path)
+        print("pdf_url:", pdf_url)
+        print("image_url:", image_url)
+        print("pdf_path:", pdf_path)
+        print("image_path:", image_path)
+        print("Model:", req.model)
         try:
 
             if pdf_path and image_path:
